@@ -1,0 +1,16 @@
+package com.acme.catchup.platform.news.infrastructure.persistence.jpa.repositories;
+
+import com.acme.catchup.platform.news.domain.model.valueobjects.NewsApiKey;
+import com.acme.catchup.platform.news.domain.model.valueobjects.SourceId;
+import com.acme.catchup.platform.news.infrastructure.persistence.jpa.entities.FavoriteSourceJpaEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface SpringDataFavoriteSourceJpaRepository extends JpaRepository<FavoriteSourceJpaEntity, Long> {
+    List<FavoriteSourceJpaEntity> findAllByNewsApiKey(NewsApiKey newsApiKey);
+    boolean existsByNewsApiKeyAndSourceId(NewsApiKey newsApiKey, SourceId sourceId);
+    Optional<FavoriteSourceJpaEntity> findByNewsApiKeyAndSourceId(NewsApiKey newsApiKey, SourceId sourceId);
+}
